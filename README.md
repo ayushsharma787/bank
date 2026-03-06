@@ -1,97 +1,146 @@
-# 🔬 Employee Attrition Intelligence Suite
+# 🏦 Universal Bank Intelligence Platform
 
-A comprehensive, interactive Streamlit dashboard that performs **Descriptive, Diagnostic, Predictive, and Prescriptive analysis** on employee attrition data — answering the central question: **Why do employees stay or leave?**
+> Enterprise-grade ML-powered banking analytics dashboard built with Streamlit
 
-![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.41-FF4B4B?logo=streamlit)
-![Plotly](https://img.shields.io/badge/Plotly-Interactive_Charts-3F4F75?logo=plotly)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io)
+![Python](https://img.shields.io/badge/Python-3.9+-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-## 🎯 Objective
+## 📸 Features
 
-To understand **why employees stay or leave** the organisation, tracked via the `Attrition` column, through four layers of analytics:
+| Section | Description |
+|---|---|
+| 📊 **Overview** | Executive KPIs, income distribution, loan split, scatter analysis, live alerts |
+| 👥 **Customer Analytics** | Demographics, behavioral filters, interactive data explorer |
+| 💳 **Loan Analytics** | Acceptance rate by income, education, family size, CD account |
+| 🤖 **AI Predictor** | Real-time loan prediction with 11 ML algorithms + feature importance |
+| 📈 **Model Comparison** | Full benchmark: accuracy, precision, recall, F1, AUC-ROC, confusion matrix |
+| ⚠️ **Risk Matrix** | Risk tier scoring, Pearson correlation heatmap, portfolio health |
 
-| Analysis Type | Question Answered | Techniques Used |
+---
+
+## 🧠 ML Algorithms Included
+
+| Algorithm | Type | Best For |
 |---|---|---|
-| **Descriptive** | What happened? | Distributions, KPIs, Sunburst drill-downs, demographic breakdowns |
-| **Diagnostic** | Why did it happen? | Correlation analysis, Chi-Square tests, Cramér's V, Risk factor combinations |
-| **Predictive** | What will happen? | Logistic Regression, Random Forest, Gradient Boosting, ROC curves |
-| **Prescriptive** | What should we do? | Risk scoring simulator, strategic recommendations, impact-cost matrix |
+| **Gradient Boosting** | Ensemble | Imbalanced data (⭐ Default) |
+| **XGBoost** | Ensemble | AUC optimization |
+| **LightGBM** | Ensemble | Speed + accuracy |
+| **Random Forest** | Ensemble | Stability & interpretability |
+| **Extra Trees** | Ensemble | Low-variance predictions |
+| **AdaBoost** | Ensemble | Boosting weak learners |
+| **Decision Tree** | Tree | Fast inference, explainable |
+| **Logistic Regression** | Linear | Baseline comparison |
+| **KNN** | Instance-based | Non-linear boundaries |
+| **SVM** | Kernel | High-dimensional data |
+| **Neural Network (MLP)** | Deep Learning | Complex patterns |
+
+> All models trained with **SMOTE oversampling** to handle the 9.6% class imbalance.
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Local)
 
-### Local Setup
 ```bash
-# Clone the repo
-git clone https://github.com/YOUR_USERNAME/employee-attrition-dashboard.git
-cd employee-attrition-dashboard
+# 1. Clone the repo
+git clone https://github.com/YOUR_USERNAME/universalbank-dashboard.git
+cd universalbank-dashboard
 
-# Install dependencies
+# 2. Create virtual environment
+python -m venv venv
+source venv/bin/activate      # macOS/Linux
+venv\Scripts\activate         # Windows
+
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# Run the app
+# 4. Run the app
 streamlit run app.py
 ```
 
-### Deploy on Streamlit Cloud
-1. Push this repo to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your GitHub repo
-4. Set `app.py` as the main file
-5. Deploy!
+Open your browser at **http://localhost:8501**
 
 ---
 
-## 📊 Dashboard Features
+## ☁️ Deploy to Streamlit Community Cloud
 
-- **Interactive Sidebar Filters** — slice data by Department, Gender, Job Role, OverTime, Age, and Income
-- **6 KPI Cards** — real-time summary metrics
-- **Sunburst & Treemap Drill-Downs** — click to explore hierarchical attrition patterns
-- **Radar Charts** — multi-dimensional satisfaction comparison
-- **Statistical Tests** — Chi-Square with Cramér's V effect sizes
-- **3 ML Models** — with cross-validated AUC, ROC curves, and feature importance
-- **Risk Score Simulator** — interactive gauge to estimate individual attrition risk
-- **Impact vs Cost Matrix** — prioritise interventions by effectiveness and cost
+1. Push this repository to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Click **"New app"**
+4. Select:
+   - **Repository**: `YOUR_USERNAME/universalbank-dashboard`
+   - **Branch**: `main`
+   - **Main file**: `app.py`
+5. Click **Deploy** ✅
+
+> ⚠️ Streamlit Cloud has a 1GB memory limit. All 11 models train in ~30 seconds and are cached via `@st.cache_resource`.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-employee-attrition-dashboard/
-├── app.py                  # Main Streamlit application
-├── EA.csv                  # Employee Attrition dataset (1,470 × 35)
-├── requirements.txt        # Python dependencies
+universalbank_dashboard/
+├── app.py                          # 🏠 Main entry point
+├── requirements.txt                # 📦 Dependencies
+├── README.md
 ├── .streamlit/
-│   └── config.toml         # Streamlit theme configuration
-├── .gitignore
-└── README.md
+│   └── config.toml                 # 🎨 Dark gold theme
+├── data/
+│   └── UniversalBank.csv           # 📊 5,000 customer records
+├── models/
+│   ├── __init__.py
+│   └── train_models.py             # 🤖 All ML algorithms
+├── utils/
+│   ├── __init__.py
+│   ├── data_loader.py              # 📥 Data loading & stats
+│   └── styling.py                  # 🎨 Premium CSS
+└── pages/
+    ├── 1_Overview.py               # 📊 Executive summary
+    ├── 2_Customer_Analytics.py     # 👥 Customer deep-dive
+    ├── 3_Loan_Analytics.py         # 💳 Loan portfolio
+    ├── 4_AI_Predictor.py           # 🤖 Real-time predictor
+    ├── 5_Model_Comparison.py       # 📈 Algorithm benchmark
+    └── 6_Risk_Matrix.py            # ⚠️ Risk intelligence
 ```
 
 ---
 
-## 📦 Dataset
+## 📊 Dataset
 
-- **1,470 employees** × **35 features**
-- Target variable: `Attrition` (Yes/No)
-- Features include demographics, compensation, satisfaction scores, tenure, and work conditions
-- No missing values
+**Universal Bank Dataset** — 5,000 customers with 14 features:
+
+| Feature | Description |
+|---|---|
+| Age | Customer age (23–67) |
+| Experience | Years of work experience |
+| Income | Annual income in $K |
+| Family | Family size (1–4) |
+| CCAvg | Monthly credit card spend ($K) |
+| Education | 1=Undergrad, 2=Graduate, 3=Advanced |
+| Mortgage | Mortgage value ($K) |
+| Personal Loan | **Target** — 1=Accepted, 0=Rejected |
+| Securities Account | Has securities account (0/1) |
+| CD Account | Has CD account (0/1) |
+| Online | Uses online banking (0/1) |
+| CreditCard | Has bank credit card (0/1) |
+
+**Class imbalance**: 9.6% accepted (480) vs 90.4% rejected (4,520) → handled via SMOTE.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-- **Streamlit** — Dashboard framework
-- **Plotly** — Interactive visualisations
-- **scikit-learn** — Predictive models
-- **SciPy / statsmodels** — Statistical tests
-- **Pandas / NumPy** — Data processing
+- **Frontend**: Streamlit 1.32+
+- **ML**: scikit-learn, XGBoost, LightGBM, imbalanced-learn
+- **Visualization**: Plotly 5.x
+- **Data**: Pandas, NumPy
+- **Styling**: Custom CSS with Google Fonts (Syne + DM Mono)
 
 ---
 
 ## 📄 License
 
-MIT License — free to use, modify, and distribute.
+MIT License — free to use and modify.
